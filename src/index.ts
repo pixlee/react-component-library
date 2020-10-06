@@ -1,3 +1,3 @@
 import TestComponent from "./TestComponent/TestComponent";
-
-export { TestComponent };
+import TableComponent from './TableComponent/TableComponent';
+export { TestComponent, TableComponent };
