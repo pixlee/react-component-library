@@ -4,6 +4,8 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import copy from "rollup-plugin-copy";
+import replace from '@rollup/plugin-replace';
+
 import {
   terser
 } from 'rollup-plugin-terser';
@@ -12,7 +14,7 @@ const packageJson = require("./package.json");
 
 export default {
   input: "src/index.ts",
-  external: ['React'],
+  external: ['react'],
   output: [
     // {
     //   file: packageJson.main,
@@ -26,18 +28,21 @@ export default {
     // },
     {
       compact: true,
-      file: packageJson.module,
+      file: packageJson.unpkg,
       format: "iife",
       // sourcemap: true,
       name: 'ReactComponentLibrary',
       exports: 'named',
-      globals: { React: 'React'}
+      globals: { react: 'React'}
     }
   ],
   plugins: [
     peerDepsExternal(),
     resolve(),
     commonjs(),
+    replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
+    }),
     typescript({ useTsconfigDeclarationDir: true }),
     postcss(),
     copy({
