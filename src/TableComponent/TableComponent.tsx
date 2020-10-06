@@ -6,7 +6,7 @@ import { TableComponentProps } from "./TableComponent.types";
 import "./TableComponent.scss";
 
 const TableComponent: React.FC<TableComponentProps> = ({ items }) => (
-    <table class="table-component">
+    <table className="table-component">
         <thead>
             <tr>
                 <th>Name</th>
@@ -17,7 +17,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ items }) => (
         <tbody>
             {!items.length &&
                 <tr v-if="!items.length">
-                    <td colspan="3">Nothing to display</td>
+                    <td colSpan={3}>Nothing to display</td>
                 </tr>
             }
 
