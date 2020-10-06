@@ -12,6 +12,7 @@ const packageJson = require("./package.json");
 
 export default {
   input: "src/index.ts",
+  external: ['React'],
   output: [
     // {
     //   file: packageJson.main,
@@ -53,10 +54,10 @@ export default {
         }
       ]
     }),
-    terser({
-      output: {
-        ecma: 5,
-      },
-    }),
+    // terser({
+    //   output: {
+    //     ecma: 5,
+    //   },
+    // }),
   ]
 };
