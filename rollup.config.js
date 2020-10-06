@@ -14,7 +14,7 @@ const packageJson = require("./package.json");
 
 export default {
   input: "src/index.ts",
-  external: ['react'],
+  // external: ['react'],
   output: [
     // {
     //   file: packageJson.main,
@@ -37,28 +37,33 @@ export default {
     }
   ],
   plugins: [
-    peerDepsExternal(),
     resolve(),
-    commonjs(),
+    // peerDepsExternal(),
     replace({
-        'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     typescript({ useTsconfigDeclarationDir: true }),
     postcss(),
-    copy({
-      targets: [
-        {
-          src: "src/variables.scss",
-          dest: "build",
-          rename: "variables.scss"
-        },
-        {
-          src: "src/typography.scss",
-          dest: "build",
-          rename: "typography.scss"
-        }
-      ]
+    commonjs({
+                  include: [
+                    'node_modules/react/**',
+                    'node_modules/react-dom/**'
+                  ]
     }),
+    // copy({
+    //   targets: [
+    //     {
+    //       src: "src/variables.scss",
+    //       dest: "build",
+    //       rename: "variables.scss"
+    //     },
+    //     {
+    //       src: "src/typography.scss",
+    //       dest: "build",
+    //       rename: "typography.scss"
+    //     }
+    //   ]
+    // }),
     // terser({
     //   output: {
     //     ecma: 5,
