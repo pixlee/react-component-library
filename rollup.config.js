@@ -24,9 +24,11 @@ export default {
     //   sourcemap: true
     // },
     {
+      compact: true,
       file: packageJson.module,
       format: "iife",
-      sourcemap: true,
+      // sourcemap: true,
+      name: 'ReactComponentLibrary',
       exports: 'named',
       globals: { React: 'React'}
     }
