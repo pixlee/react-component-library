@@ -44,12 +44,13 @@ export default {
     }),
     typescript({ useTsconfigDeclarationDir: true }),
     postcss(),
-    commonjs({
-                  include: [
-                    'node_modules/react/**',
-                    'node_modules/react-dom/**'
-                  ]
-    }),
+    commonjs(
+      // {
+      //             include: [
+      //               'node_modules/react/**',
+      //               'node_modules/react-dom/**'
+      //             ]
+    ),
     // copy({
     //   targets: [
     //     {
